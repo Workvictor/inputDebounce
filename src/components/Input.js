@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
+import { debounceInput }    from './index';
 
-
-let counter=0;
-const debounce=({ interval=300, value, onEnd })=>{
-	counter++;
-	const reset=()=>{
-		onEnd && onEnd({ value, counter });
-		counter=0;
-	};
-	const nextValue=prevCounter=>{
-		setTimeout(()=>{
-			prevCounter === counter && reset();
-		}, interval);
-	};
-	nextValue(counter);
-};
 
 export class Input extends Component{
 	state={
@@ -22,9 +8,9 @@ export class Input extends Component{
 	};
 	onChange=e=>{
 		const { value }=e.target;
-		debounce({
+		debounceInput({
 			value,
-			onEnd: ({ value, counter })=>console.log(`onEnd`, value, counter)
+			// onEnd: ({ value, counter })=>console.log(`onEnd`, value, counter)
 		});
 		this.setState({ value });
 	};
