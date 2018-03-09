@@ -58,7 +58,8 @@ class App extends Component{
 	onSelect=({ elem, listItem })=>{
 		const { selectedList }=this.state;
 		const isUnique=elem=>elem.id !== listItem.id;
-		selectedList.every(isUnique) && this.setState({
+		(listItem && selectedList.every(isUnique)) &&
+		this.setState({
 			selectedList: [
 				...selectedList,
 				listItem
