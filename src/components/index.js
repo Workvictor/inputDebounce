@@ -1,2 +1,6 @@
-export { Input }         from './Input';
-export { debounceInput } from '../utils';
+export { Input }    from './Input';
+export { Dropdown } from './Dropdown';
+export {
+	debounceInput,
+	Iterator
+}                   from '../utils';

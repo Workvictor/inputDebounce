@@ -1,18 +1,20 @@
-let counter=0;
+import { Iterator } from './index';
+
+
+const iterator=new Iterator();
 export const debounceInput=({
 	interval=300,
 	value=``,
 	onEnd=({ value, counter })=>null
 })=>{
-	counter++;
 	const reset=()=>{
-		onEnd && onEnd({ value, counter });
-		counter=0;
+		onEnd && onEnd({ value, counter:iterator.counter });
+		iterator.reset();
 	};
 	const nextValue=prevCounter=>{
 		setTimeout(()=>{
-			prevCounter === counter && reset();
+			prevCounter === iterator.prev && reset();
 		}, interval);
 	};
-	nextValue(counter);
+	nextValue(iterator.next());
 };
